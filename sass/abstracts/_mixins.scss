@@ -1,0 +1,65 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centerVertHoriz {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// media query manager
+/* 
+breakpoint argument phone
+
+- phone
+- tab-port
+- tab-land
+- desktop
+- desktop-big
+
+0 - 600 Phone
+601 - 900 Tablet - portrait
+901 - 1200 Tablet Landscape
+1201 - 1800 Desktop
+1801 - Desktop Large
+
+*/
+
+// ORDER:
+// Base + typography <
+// general layout + grid
+// page layout
+// components
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      // 600px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25rem) {
+      // 900px
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      // 1200px
+      @content;
+    }
+  }
+  @if $breakpoint == desktop-big {
+    @media only screen and (min-width: 112.5em) {
+      // 1800px
+      @content;
+    }
+  }
+}
